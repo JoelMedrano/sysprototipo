@@ -73,6 +73,21 @@
 
 		}
 
+		if($_SESSION["perfil"] == "Administrador"){
+
+			echo '<li>
+
+				<a href="proveedores">
+
+					<i class="fa fa-cart-plus"></i>
+					<span>Proveedores</span>
+
+				</a>
+
+			</li>';
+
+		}
+
 		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
 
 			echo '<li class="treeview">
@@ -80,11 +95,11 @@
 				<a href="#">
 
 					<i class="fa fa-list-ul"></i>
-					
+
 					<span>Ventas</span>
-					
+
 					<span class="pull-right-container">
-					
+
 						<i class="fa fa-angle-left pull-right"></i>
 
 					</span>
@@ -92,11 +107,11 @@
 				</a>
 
 				<ul class="treeview-menu">
-					
+
 					<li>
 
 						<a href="ventas">
-							
+
 							<i class="fa fa-circle-o"></i>
 							<span>Administrar ventas</span>
 
@@ -107,7 +122,7 @@
 					<li>
 
 						<a href="crear-venta">
-							
+
 							<i class="fa fa-circle-o"></i>
 							<span>Crear venta</span>
 
@@ -120,7 +135,7 @@
 					echo '<li>
 
 						<a href="reportes">
-							
+
 							<i class="fa fa-circle-o"></i>
 							<span>Reporte de ventas</span>
 
@@ -130,7 +145,7 @@
 
 					}
 
-				
+
 
 				echo '</ul>
 

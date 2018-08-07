@@ -1,19 +1,19 @@
 <div class="content-wrapper">
 
   <section class="content-header">
-    
+
     <h1>
-      
-      Administrar categorías
-    
+
+      Administrar Laboratorios
+
     </h1>
 
     <ol class="breadcrumb">
-      
+
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
-      
-      <li class="active">Administrar categorías</li>
-    
+
+      <li class="active">Administrar Laboratorios</li>
+
     </ol>
 
   </section>
@@ -23,28 +23,28 @@
     <div class="box">
 
       <div class="box-header with-border">
-  
+
         <button class="btn btn-primary" data-toggle="modal" data-target="#modalAgregarCategoria">
-          
-          Agregar categoría
+
+          Agregar Laboratorio
 
         </button>
 
       </div>
 
       <div class="box-body">
-        
+
        <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
-         
+
         <thead>
-         
+
          <tr>
-           
+
            <th style="width:10px">#</th>
            <th>Categoria</th>
            <th>Acciones</th>
 
-         </tr> 
+         </tr>
 
         </thead>
 
@@ -58,7 +58,7 @@
           $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor);
 
           foreach ($categorias as $key => $value) {
-           
+
             echo ' <tr>
 
                     <td>'.($key+1).'</td>
@@ -68,7 +68,7 @@
                     <td>
 
                       <div class="btn-group">
-                          
+
                         <button class="btn btn-warning btnEditarCategoria" idCategoria="'.$value["id"].'" data-toggle="modal" data-target="#modalEditarCategoria"><i class="fa fa-pencil"></i></button>';
 
                         if($_SESSION["perfil"] == "Administrador"){
@@ -77,7 +77,7 @@
 
                         }
 
-                      echo '</div>  
+                      echo '</div>
 
                     </td>
 
@@ -103,7 +103,7 @@ MODAL AGREGAR CATEGORÍA
 ======================================-->
 
 <div id="modalAgregarCategoria" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -118,7 +118,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Agregar categoría</h4>
+          <h4 class="modal-title">Agregar Laboratorio</h4>
 
         </div>
 
@@ -131,19 +131,19 @@ MODAL AGREGAR CATEGORÍA
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <input type="text" class="form-control input-lg" name="nuevaCategoria" placeholder="Ingresar categoría" required>
 
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -156,7 +156,7 @@ MODAL AGREGAR CATEGORÍA
 
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
 
-          <button type="submit" class="btn btn-primary">Guardar categoría</button>
+          <button type="submit" class="btn btn-primary">Guardar Laboratorio</button>
 
         </div>
 
@@ -180,7 +180,7 @@ MODAL EDITAR CATEGORÍA
 ======================================-->
 
 <div id="modalEditarCategoria" class="modal fade" role="dialog">
-  
+
   <div class="modal-dialog">
 
     <div class="modal-content">
@@ -195,7 +195,7 @@ MODAL EDITAR CATEGORÍA
 
           <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-          <h4 class="modal-title">Editar categoría</h4>
+          <h4 class="modal-title">Editar Laboratorios</h4>
 
         </div>
 
@@ -208,12 +208,12 @@ MODAL EDITAR CATEGORÍA
           <div class="box-body">
 
             <!-- ENTRADA PARA EL NOMBRE -->
-            
+
             <div class="form-group">
-              
+
               <div class="input-group">
-              
-                <span class="input-group-addon"><i class="fa fa-th"></i></span> 
+
+                <span class="input-group-addon"><i class="fa fa-th"></i></span>
 
                 <input type="text" class="form-control input-lg" name="editarCategoria" id="editarCategoria" required>
 
@@ -222,7 +222,7 @@ MODAL EDITAR CATEGORÍA
               </div>
 
             </div>
-  
+
           </div>
 
         </div>
@@ -244,7 +244,7 @@ MODAL EDITAR CATEGORÍA
           $editarCategoria = new ControladorCategorias();
           $editarCategoria -> ctrEditarCategoria();
 
-        ?> 
+        ?>
 
       </form>
 
@@ -260,5 +260,3 @@ MODAL EDITAR CATEGORÍA
   $borrarCategoria -> ctrBorrarCategoria();
 
 ?>
-
-

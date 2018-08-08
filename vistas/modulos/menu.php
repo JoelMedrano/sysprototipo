@@ -94,6 +94,71 @@
 
 				<a href="#">
 
+					<i class="fa fa-plus-square"></i>
+
+					<span>Compras</span>
+
+					<span class="pull-right-container">
+
+						<i class="fa fa-angle-left pull-right"></i>
+
+					</span>
+
+				</a>
+
+				<ul class="treeview-menu">
+
+					<li>
+
+						<a href="compras">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Administrar compras</span>
+
+						</a>
+
+					</li>
+
+					<li>
+
+						<a href="crear-compra">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Crear compra</span>
+
+						</a>
+
+					</li>';
+
+					if($_SESSION["perfil"] == "Administrador"){
+
+					echo '<li>
+
+						<a href="reportes">
+
+							<i class="fa fa-circle-o"></i>
+							<span>Reporte de compras</span>
+
+						</a>
+
+					</li>';
+
+					}
+
+
+
+				echo '</ul>
+
+			</li>';
+
+		}
+
+		if($_SESSION["perfil"] == "Administrador" || $_SESSION["perfil"] == "Vendedor"){
+
+			echo '<li class="treeview">
+
+				<a href="#">
+
 					<i class="fa fa-list-ul"></i>
 
 					<span>Ventas</span>

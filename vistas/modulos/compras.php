@@ -4,7 +4,7 @@
 
     <h1>
 
-      Administrar Compras
+      Administrar compras
 
     </h1>
 
@@ -34,11 +34,21 @@
 
         </a>
 
+         <button type="button" class="btn btn-default pull-right" id="daterange-btn">
+
+            <span>
+              <i class="fa fa-calendar"></i> Rango de fecha
+            </span>
+
+            <i class="fa fa-caret-down"></i>
+
+         </button>
+
       </div>
 
       <div class="box-body">
 
-       <table class="table table-bordered table-striped dt-responsive tablas">
+       <table class="table table-bordered table-striped dt-responsive tablas" width="100%">
 
         <thead>
 
@@ -60,41 +70,90 @@
 
         <tbody>
 
-          <tr>
+        <?php
 
-            <td>1</td>
+          if(isset($_GET["fechaInicial"])){
 
-            <td>1000123</td>
+            $fechaInicial = $_GET["fechaInicial"];
+            $fechaFinal = $_GET["fechaFinal"];
 
-            <td>Juan Villegas</td>
+          }else{
 
-            <td>Julio Gómez</td>
+            $fechaInicial = null;
+            $fechaFinal = null;
 
-            <td>TC-12412425346</td>
+          }
 
-            <td>$ 1,000.00</td>
+          $respuesta = ControladorCompras::ctrRangoFechasCompras($fechaInicial, $fechaFinal);
 
-            <td>$ 1,190.00</td>
+          foreach ($respuesta as $key => $value) {
 
-            <td>2017-12-11 12:05:32</td>
+           echo '<tr>
 
-            <td>
+                  <td>'.($key+1).'</td>
 
-              <div class="btn-group">
+                  <td>'.$value["codigo"].'</td>';
 
-                <button class="btn btn-info"><i class="fa fa-print"></i></button>
+                  $itemProveedor = "id";
+                  $valorProveedor = $value["id_proveedor"];
 
-                <button class="btn btn-danger"><i class="fa fa-times"></i></button>
+                  $respuestaProveedor = ControladorProveedores::ctrMostrarProveedores($itemProveedor, $valorProveedor);
 
-              </div>
+                  echo '<td>'.$respuestaProveedor["nombre"].'</td>';
 
-            </td>
+                  $itemUsuario = "id";
+                  $valorUsuario = $value["id_vendedor"];
 
-          </tr>
+                  $respuestaUsuario = ControladorUsuarios::ctrMostrarUsuarios($itemUsuario, $valorUsuario);
+
+                  echo '<td>'.$respuestaUsuario["nombre"].'</td>
+
+                  <td>'.$value["metodo_pago"].'</td>
+
+                  <td>$ '.number_format($value["neto"],2).'</td>
+
+                  <td>$ '.number_format($value["total"],2).'</td>
+
+                  <td>'.$value["fecha"].'</td>
+
+                  <td>
+
+                    <div class="btn-group">
+
+                      <button class="btn btn-info btnImprimirFactura" codigoCompra="'.$value["codigo"].'">
+
+                        <i class="fa fa-print"></i>
+
+                      </button>';
+
+                      if($_SESSION["perfil"] == "Administrador"){
+
+                      echo '<button class="btn btn-warning btnEditarCompra" idCompra="'.$value["id"].'"><i class="fa fa-pencil"></i></button>
+
+                      <button class="btn btn-danger btnEliminarCompra" idCompra="'.$value["id"].'"><i class="fa fa-times"></i></button>';
+
+                    }
+
+                    echo '</div>
+
+                  </td>
+
+                </tr>';
+            }
+
+        ?>
 
         </tbody>
 
        </table>
+
+       <?php
+
+      $eliminarCompra = new ControladorCompras();
+      $eliminarCompra -> ctrEliminarCompra();
+
+      ?>
+
 
       </div>
 

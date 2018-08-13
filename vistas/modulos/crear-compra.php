@@ -4,7 +4,7 @@
 
     <h1>
 
-      Crear compra
+      Crear compras
 
     </h1>
 
@@ -12,7 +12,7 @@
 
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Crear compra</li>
+      <li class="active">Crear compras</li>
 
     </ol>
 
@@ -48,7 +48,9 @@
 
                     <span class="input-group-addon"><i class="fa fa-user"></i></span>
 
-                    <input type="text" class="form-control" id="nuevoVendedor" name="nuevoVendedor" value="Usuario Administrador" readonly>
+                    <input type="text" class="form-control" id="nuevoVendedor" value="<?php echo $_SESSION["nombre"]; ?>" readonly>
+
+                    <input type="hidden" name="idVendedor" value="<?php echo $_SESSION["id"]; ?>">
 
                   </div>
 
@@ -64,14 +66,43 @@
 
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
 
-                    <input type="text" class="form-control" id="nuevaCompra" name="nuevaCompra" value="10002343" readonly>
+                    <?php
+
+                    $item = null;
+                    $valor = null;
+
+                    $compras = ControladorCompras::ctrMostrarCompras($item, $valor);
+
+                    if(!$compras){
+
+                      echo '<input type="text" class="form-control" id="nuevaCompra" name="nuevaCompra" value="10001" readonly>';
+
+
+                    }else{
+
+                      foreach ($compras as $key => $value) {
+
+
+
+                      }
+
+                      $codigo = $value["codigo"] + 1;
+
+
+
+                      echo '<input type="text" class="form-control" id="nuevaCompra" name="nuevaCompra" value="'.$codigo.'" readonly>';
+
+
+                    }
+
+                    ?>
 
                   </div>
 
                 </div>
 
                 <!--=====================================
-                ENTRADA DEL CLIENTE
+                ENTRADA DEL PROVEEDOR
                 ======================================-->
 
                 <div class="form-group">
@@ -83,6 +114,21 @@
                     <select class="form-control" id="seleccionarProveedor" name="seleccionarProveedor" required>
 
                     <option value="">Seleccionar proveedor</option>
+
+                      <?php
+
+                      $item = null;
+                      $valor = null;
+
+                      $categorias = ControladorProveedores::ctrMostrarProveedores($item, $valor);
+
+                      foreach ($categorias as $key => $value) {
+
+                        echo '<option value="'.$value["id"].'">'.$value["nombre"].'</option>';
+
+                      }
+
+                      ?>
 
                     </select>
 
@@ -246,7 +292,7 @@
 
           <div class="box-footer">
 
-            <button type="submit" class="btn btn-primary pull-right">Guardar Compra</button>
+            <button type="submit" class="btn btn-primary pull-right">Guardar compras</button>
 
           </div>
 
@@ -283,23 +329,6 @@
 
               </thead>
 
-              <tbody>
-
-                <tr>
-                  <td>1.</td>
-                  <td><img src="vistas/img/productos/default/anonymous.png" class="img-thumbnail" width="40px"></td>
-                  <td>00123</td>
-                  <td>Lorem ipsum dolor sit amet</td>
-                  <td>20</td>
-                  <td>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary">Agregar</button>
-                    </div>
-                  </td>
-                </tr>
-
-              </tbody>
-
             </table>
 
           </div>
@@ -314,9 +343,9 @@
   </section>
 
 </div>
-99
+
 <!--=====================================
-MODAL AGREGAR CLIENTE
+MODAL AGREGAR PROVEEDOR
 ======================================-->
 
 <div id="modalAgregarProveedor" class="modal fade" role="dialog">
@@ -397,7 +426,7 @@ MODAL AGREGAR CLIENTE
 
                 <span class="input-group-addon"><i class="fa fa-phone"></i></span>
 
-                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-9999'" data-mask required>
+                <input type="text" class="form-control input-lg" name="nuevoTelefono" placeholder="Ingresar teléfono" data-inputmask="'mask':'(999) 999-999'" data-mask required>
 
               </div>
 
@@ -416,7 +445,6 @@ MODAL AGREGAR CLIENTE
               </div>
 
             </div>
-
 
           </div>
 
